@@ -1,0 +1,17 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+ENTITY RPS IS
+  PORT (
+  A : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+  B : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+  WA : OUT STD_LOGIC;
+  WB : OUT STD_LOGIC;
+  E : OUT STD_LOGIC
+  );
+END RPS;
+ARCHITECTURE comb OF RPS IS
+BEGIN
+  WA   <= (A(1) xor B(0)) or (((A(0) xor B(1)) and B(0)) xor B(0));
+  WB   <= (A(0) xor B(1)) or (((A(1) xor B(0)) and B(1)) xor B(1));
+  E <= (A(1) nor A(0)) or (B(1) nor B(0));
+END comb;
